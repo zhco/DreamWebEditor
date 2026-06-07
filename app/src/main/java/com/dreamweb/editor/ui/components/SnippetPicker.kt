@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.dreamweb.editor.domain.model.Snippet
 import com.dreamweb.editor.domain.model.SnippetCategory
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SnippetPicker(
     snippets: List<Snippet>,
@@ -48,7 +49,7 @@ fun SnippetPicker(
             }
         }
 
-        HorizontalDivider()
+        Divider()
 
         val filteredSnippets = if (selectedCategory != null) {
             snippets.filter { it.category == selectedCategory }

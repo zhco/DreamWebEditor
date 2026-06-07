@@ -16,11 +16,6 @@ import com.dreamweb.editor.ui.editor.EditorScreen
 import com.dreamweb.editor.ui.preview.PreviewScreen
 import com.dreamweb.editor.ui.project.ProjectListScreen
 
-sealed class Screen(val route: String) {
-    object ProjectList : Screen("project_list")
-    object Editor : Screen("editor")
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DreamWebNavHost(
@@ -58,9 +53,8 @@ fun DreamWebNavHost(
         ) {
             composable(Screen.ProjectList.route) {
                 ProjectListScreen(
-                    onProjectSelected = { project ->
-                        currentProject = project
-                        navController.navigate(Screen.Editor.route)
+                    onProjectClick = { projectId ->
+                        navController.navigate(Screen.Editor.createRoute(projectId))
                     }
                 )
             }
@@ -68,15 +62,8 @@ fun DreamWebNavHost(
                 if (currentProject != null) {
                     when (selectedTab) {
                         0 -> EditorScreen(
-                            file = currentFile,
-                            onContentChange = { newContent ->
-                                currentFile = currentFile?.copy(content = newContent)
-                            },
-                            onSave = { },
-                            onFormat = { },
-                            onUndo = { },
-                            onRedo = { },
-                            onInsertTag = { _, _, _ -> }
+                            projectId = currentProject!!.id,
+                            onNavigateBack = { navController.popBackStack() }
                         )
                         1 -> PreviewScreen(
                             files = currentFiles,

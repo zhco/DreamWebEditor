@@ -57,7 +57,7 @@ fun SettingsPanel(
             )
         }
 
-        HorizontalDivider()
+        Divider()
 
         // Toggles
         SettingToggle(

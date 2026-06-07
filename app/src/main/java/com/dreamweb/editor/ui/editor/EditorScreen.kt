@@ -321,7 +321,7 @@ fun FilesTab(
             }
         }
 
-        HorizontalDivider()
+        Divider()
 
         if (files.isEmpty()) {
             Box(
@@ -398,5 +398,5 @@ fun FileItem(
             }
         }
     }
-    HorizontalDivider()
+    Divider()
 }
