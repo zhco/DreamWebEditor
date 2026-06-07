@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamWeb Editor - 项目概览</title>
+    <style>
+        :root {
+            --primary: #6200EE;
+            --primary-light: #BB86FC;
+            --bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text: #1C1B1F;
+            --text-secondary: #757575;
+            --border: #E0E0E0;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --html-color: #E44D26;
+            --css-color: #264DE4;
+            --js-color: #F7DF1E;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), #7C4DFF);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .stat-card .number { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .stat-card .label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        .arch-layer {
+            background: #f5f0ff;
+            border-left: 4px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .arch-layer h3 { font-size: 1rem; color: var(--primary); margin-bottom: 0.25rem; }
+        .arch-layer p { font-size: 0.85rem; color: var(--text-secondary); }
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: #f9f9f9;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .file-item .ext {
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            color: white;
+        }
+        .ext-kt { background: #7C4DFF; }
+        .ext-xml { background: #FF9800; }
+        .ext-kts { background: #4CAF50; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        .feature-card {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .feature-card h4 { font-size: 0.9rem; }
+        .feature-card p { font-size: 0.75rem; color: var(--text-secondary); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .badge-html { background: #FDE8E1; color: var(--html-color); }
+        .badge-css { background: #E1E6FD; color: var(--css-color); }
+        .badge-js { background: #FFF9E1; color: #B8860B; }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛠️ DreamWeb Editor</h1>
+        <p>Android 原生 HTML 编辑器 · 类似 Dreamweaver 的移动端网页开发工具</p>
+    </header>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number">31</div>
+                <div class="label">Kotlin 源文件</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">10</div>
+                <div class="label">XML 资源文件</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">47</div>
+                <div class="label">总文件数</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">3</div>
+                <div class="label">架构层级</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📐 架构设计：MVVM + Clean Architecture</h2>
+            <div class="arch-layer">
+                <h3>UI 层 (Presentation)</h3>
+                <p>Jetpack Compose 界面 · ViewModel 状态管理 · Navigation 路由 · 深色/浅色主题</p>
+            </div>
+            <div class="arch-layer">
+                <h3>Domain 层 (业务逻辑)</h3>
+                <p>数据模型 · UseCase 用例 · 代码格式化 · 实时预览生成 · 撤销/重做状态</p>
+            </div>
+            <div class="arch-layer">
+                <h3>Data 层 (数据持久化)</h3>
+                <p>Room 数据库 · DAO 接口 · Entity 映射 · Repository 模式 · 代码片段库</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✨ 核心功能</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">📝</div>
+                    <h4>CodeMirror 6 编辑器</h4>
+                    <p>语法高亮 · 自动补全 · 行号 · 代码折叠</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">👁️</div>
+                    <h4>实时预览</h4>
+                    <p>CSS/JS 自动注入 · WebView 渲染 · 一键刷新</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📂</div>
+                    <h4>项目管理</h4>
+                    <p>多项目支持 · 文件增删 · Room 持久化</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🏷️</div>
+                    <h4>HTML 标签插入</h4>
+                    <p>14+ 代码片段 · 快速标签菜单</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">↩️</div>
+                    <h4>撤销/重做</h4>
+                    <p>无限历史栈 · Ctrl+Z/Y 快捷键</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h4>深色主题</h4>
+                    <p>Monokai 代码主题 · Material 3 设计</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📦 技术栈</h2>
+            <table style="width:100%; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">语言</td>
+                    <td style="padding: 8px;">Kotlin 1.9.20</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">UI 框架</td>
+                    <td style="padding: 8px;">Jetpack Compose + Material 3</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">代码编辑器</td>
+                    <td style="padding: 8px;">CodeMirror 6 (WebView 嵌入)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">数据库</td>
+                    <td style="padding: 8px;">Room + SQLite</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">依赖注入</td>
+                    <td style="padding: 8px;">Hilt (Dagger)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">导航</td>
+                    <td style="padding: 8px;">Navigation Compose</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 8px; font-weight: 600;">最低 SDK</td>
+                    <td style="padding: 8px;">Android 8.0 (API 26)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: 600;">包名</td>
+                    <td style="padding: 8px; font-family: monospace;">com.dreamweb.editor</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📁 项目文件结构</h2>
+            <div class="file-list">
+                <div class="file-item"><span class="ext ext-kt">KT</span> DreamWebApp.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> MainActivity.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> EditorScreen.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> EditorViewModel.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> PreviewScreen.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> PreviewViewModel.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectListScreen.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectViewModel.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> AppNavigation.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> NavGraph.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> Theme.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> Project.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectFile.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> EditorSettings.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> Snippet.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> UndoRedoState.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> CreateProjectUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> FormatHtmlUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> GeneratePreviewUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> GetProjectsUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> GetProjectFilesUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> SaveFileUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> DeleteFileUseCase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectEntity.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectFileEntity.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectDao.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectFileDao.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> AppDatabase.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> DatabaseModule.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> ProjectRepository.kt</div>
+                <div class="file-item"><span class="ext ext-kt">KT</span> SnippetRepository.kt</div>
+                <div class="file-item"><span class="ext xml">XML</span> AndroidManifest.xml</div>
+                <div class="file-item"><span class="ext xml">XML</span> strings.xml</div>
+                <div class="file-item"><span class="ext xml">XML</span> themes.xml</div>
+                <div class="file-item"><span class="ext xml">XML</span> colors.xml</div>
+                <div class="file-item"><span class="ext xml">XML</span> file_paths.xml</div>
+                <div class="file-item"><span class="ext kts">KTS</span> build.gradle.kts (x2)</div>
+                <div class="file-item"><span class="ext kts">KTS</span> settings.gradle.kts</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔧 支持的文件类型</h2>
+            <p>
+                <span class="badge badge-html">HTML</span>
+                <span class="badge badge-css">CSS</span>
+                <span class="badge badge-js">JavaScript</span>
+            </p>
+            <p style="margin-top: 0.75rem;">编辑器自动根据文件类型切换 CodeMirror 语法模式，CSS/JS 内容在预览时自动注入到 HTML 页面中。</p>
+        </div>
+    </div>
+
+    <footer>
+        DreamWeb Editor · MVVM + Clean Architecture · Kotlin + Jetpack Compose · Room + Hilt<br>
+        项目路径: /workspace/DreamWebEditor/
+    </footer>
+</body>
+</html>
